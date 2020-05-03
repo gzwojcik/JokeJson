@@ -21,47 +21,48 @@ class ViewController: UIViewController {
         
 
 
-                 let jsonUrlString = "https://official-joke-api.appspot.com/random_joke"
-                 
-                 guard let url = URL(string: jsonUrlString) else { return }
-                 
-                 URLSession.shared.dataTask(with: url) { (data, response, error) in
-                     
-                     
-                     guard let data = data else { return }
-        
-                     
-                     do {
-                         // parsing json data to an object with the structure from the model in joke.swift
-                         let joke =  try JSONDecoder().decode(Joke.self, from: data)
-                         
-                         let dataAsString = String(data: data, encoding: .utf8)
-                         print(dataAsString)
-                         print (joke.setup + "\n" + joke.punchline)
-                         
-                         self.jokeQuestionLB.text = joke.setup
-                         self.jokeAnswerLB.text = joke.punchline
-                        
-                         
-                     } catch let jsonErr {
-                         print ("Error with json:", jsonErr)
-                     }
-                     
-                 // have to resume the session
-                 }.resume()
-                 
-        
+        let jsonUrlString = "https://official-joke-api.appspot.com/random_joke"
+
+        guard let url = URL(string: jsonUrlString) else { return }
+
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+
+
+            guard let data = data else { return }
+
+
+            do {
+                // parsing json data to an object with the structure from the model in joke.swift
+                let joke =  try JSONDecoder().decode(Joke.self, from: data)
+
+                let dataAsString = String(data: data, encoding: .utf8)
+                print(dataAsString)
+                print (joke.setup + "\n" + joke.punchline)
+
+                // thread error is gone
+                DispatchQueue.main.async {
+                    self.jokeQuestionLB.text = joke.setup
+                    self.jokeAnswerLB.text = joke.punchline
+                }
+                
+                
+            } catch let jsonErr {
+                print ("Error with json:", jsonErr)
+            }
+            
+            // have to resume the session
+        }.resume()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-    
-                getJoke()
-        
-                jokeBtn.layer.cornerRadius = 8
 
-            }
+        getJoke()
+        
+        jokeBtn.layer.cornerRadius = 8
+
+    }
 
     
     @IBAction func jokeBtnPressed(_ sender: Any) {
@@ -69,9 +70,9 @@ class ViewController: UIViewController {
         getJoke()
     }
     
-    }
-    
-    
+}
+
+
 
 
 

@@ -61,11 +61,11 @@
 				DA4BFBBC245DE41800B8B5C0 /* AppDelegate.swift */,
 				DA4BFBBE245DE41800B8B5C0 /* SceneDelegate.swift */,
 				DA4BFBC0245DE41800B8B5C0 /* ViewController.swift */,
+				DA4BFBD0245DE44400B8B5C0 /* Joke.swift */,
 				DA4BFBC2245DE41900B8B5C0 /* Main.storyboard */,
 				DA4BFBC5245DE41B00B8B5C0 /* Assets.xcassets */,
 				DA4BFBC7245DE41B00B8B5C0 /* LaunchScreen.storyboard */,
 				DA4BFBCA245DE41B00B8B5C0 /* Info.plist */,
-				DA4BFBD0245DE44400B8B5C0 /* Joke.swift */,
 			);
 			path = Joke3rd;
 			sourceTree = "<group>";
